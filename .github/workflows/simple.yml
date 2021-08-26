@@ -25,4 +25,4 @@ jobs:
         run: Get-Location
       - name: Directory Vash
         run: pwd
-        shell: bach
+        shell: bash
