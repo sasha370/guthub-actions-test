@@ -1,5 +1,5 @@
 name: Actions Workflow
-on: [push]
+on: [ push, pull_request ]
 jobs:
   run-github-actions:
     runs-on: ubuntu-latest
@@ -11,7 +11,7 @@ jobs:
           echo $GITHUB_SHA
           echo $GITHUB_REPOSITORY
           echo $GITHUB_WORKSPACE
-          echo "${{ github.token}}"
+          echo "${{ github.token }}"
       - name: Checkout
         uses: actions/checkout@v1
       - name: List Files2
@@ -22,6 +22,6 @@ jobs:
         id: greet
         uses: actions/hello-world-javascript-action@v1
         with:
-          who-to-greet:  'Alex'
+          who-to-greet: 'Alex'
       - name: Log Greeting Time
         run: echo "${{steps.greet.outputs.time}}"
