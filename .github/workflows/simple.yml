@@ -16,5 +16,13 @@ jobs:
         run: |
           import platform
           print
-          (platform.processor())
+          print(platform.processor())
         shell: python
+  run-windows-command:
+    runs-on: windows-latest
+    steps:
+      - name: Dericory PowerShaell
+        run: Get-Location
+      - name: Directory Vash
+        run: pwd
+        shell: bach
