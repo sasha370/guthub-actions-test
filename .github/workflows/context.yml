@@ -14,11 +14,13 @@ jobs:
   one:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: eccho "$GITHUB_CONTEXT"
+        continue-on-error: true
       - name: Dump job context
         if: failure()
         env:
