@@ -16,7 +16,7 @@ jobs:
     if: github.event_name == 'push'
     timeout-minutes: 5
     steps:
-      - name: Dump GitHub context
+      - name: Dump GitHub context(failed job)
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: eccho "$GITHUB_CONTEXT"
