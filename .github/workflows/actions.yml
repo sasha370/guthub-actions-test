@@ -1,12 +1,13 @@
 name: Actions Workflow
-on:
-  push:
-    branches:
-      - master
-      - 'feature/*'
+# on:
+#   push:
+#     branches:
+#       - master
+#       - 'feature/*'
+on: workflow_dispatch
 jobs:
   run-github-actions:
-    if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, 'run features GHA')
+
     runs-on: ubuntu-latest
     steps:
       - name: payload
