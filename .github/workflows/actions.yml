@@ -13,8 +13,10 @@ jobs:
     steps:
       - name: payload
         run: echo ${{ github.event.client_payload.env }}
+        
       - name: List Files
         run: |
+          echo ${{ github.ref_name }}
           pwd
           ls -a
           echo $GITHUB_SHA
