@@ -13,14 +13,15 @@ jobs:
       - id: prData
         uses: actions/github-script@v4
         with: 
-          result-encoding: string
           script: |
             const { owner, repo, number } = context.issue;
-            const { pr } = await github.pulls.get({ owner, repo, pull_number: number });
-            echo ${{ pr.head.ref }}   
+            const { data: pr } = await github.pulls.get({ owner, repo, pull_number: number });
+            core.setOutput('ref', pr.head.ref)
             
       - name: payload
-        run: echo ${{ github.event.client_payload.env }}
+        run: |
+          echo ${{ steps.prData.outputs.ref }}
+          echo ${{ github.event.client_payload.env }}
       - name: List Files
         run: |
           echo "REf name: ${{ github.ref_name }}"
