@@ -16,12 +16,8 @@ jobs:
           result-encoding: string
           script: |
             const { owner, repo, number } = context.issue;
-            const pr = await github.pulls.get({
-              owner,
-              repo,
-              pull_number: number,
-            });
-            return pr.data.head.sha     
+            const { data: pr } = await github.pulls.get({ owner, repo, pull_number: number });
+            echo ${{ pr.head.ref }}   
             
       - name: payload
         run: echo ${{ github.event.client_payload.env }}
