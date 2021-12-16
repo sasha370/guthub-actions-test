@@ -7,15 +7,26 @@ on:
         required: false
       talent_portal_branch:
         description: 'Input Talent Portal branch (empty=master)'
-        required: true
-
+        required: false
+  issue_comment:
+    types: [created]
 
 jobs:
   run-github-actions:
 
-#     if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/run features by GHA') 
+    name: Trigger PR Workflow
+    if: >
+      github.event.issue.pull_request && contains(github.event.comment.body, '@toptal-bot run features GHA')
     runs-on: ubuntu-latest
     steps:
+      - id: prData
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const { owner, repo, number } = context.issue;
+            const { data: pr } = await github.pulls.get({ owner, repo, pull_number: number });
+            core.setOutput('ref', pr.head.ref)
+            
       - name: Set Branches
         run: |
           echo "TESTBOX_BRANCH_PLATFORM=${{ github.event.inputs.platform_branch || 'master' }}" >> $GITHUB_ENV
