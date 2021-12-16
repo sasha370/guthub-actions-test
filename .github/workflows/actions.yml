@@ -1,8 +1,10 @@
 name: Actions Workflow
 on:
   workflow_dispatch:
-
-
+    inputs:
+      talent_portal_branch:
+        description: 'Input branch name for testing'
+        required: false
 
 jobs:
   run-github-actions:
@@ -10,6 +12,8 @@ jobs:
 #     if: contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, '/run features by GHA') 
     runs-on: ubuntu-latest
     steps:
+      - name: Set Talent Portal Branch
+        run: echo "TESTBOX_BRANCH_TALENT_PORTAL=${{ github.event.inputs.talent_portal_branch || 'master' }}"
       - name: payload
         run: echo ${{ github.event.client_payload.env }}
         
