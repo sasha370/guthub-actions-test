@@ -16,7 +16,7 @@ jobs:
           result-encoding: string
           script: |
             const { owner, repo, number } = context.issue;
-            const { data: pr } = await github.pulls.get({ owner, repo, pull_number: number });
+            const { pr } = await github.pulls.get({ owner, repo, pull_number: number });
             echo ${{ pr.head.ref }}   
             
       - name: payload
