@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
     inputs:
       platform_branch:
-        description: 'Input Platform branch (empty = master)'
+        description: 'Input Platform branch(empty=master)'
         required: false
       talent_portal_branch:
-        description: 'Input Talent Portal branch'
+        description: 'Input Talent Portal branch (empty=master)'
         required: true
 
 
