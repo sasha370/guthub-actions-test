@@ -1,13 +1,13 @@
 name: Actions Workflow
 on:
-  workflow_dispatch:
-    inputs:
-      platform_branch:
-        description: 'Input Platform branch(empty=master)'
-        required: false
-      talent_portal_branch:
-        description: 'Input Talent Portal branch (empty=master)'
-        required: false
+#   workflow_dispatch:
+#     inputs:
+#       platform_branch:
+#         description: 'Input Platform branch(empty=master)'
+#         required: false
+#       talent_portal_branch:
+#         description: 'Input Talent Portal branch (empty=master)'
+#         required: false
   issue_comment:
     types: [created]
 
@@ -15,8 +15,7 @@ jobs:
   run-github-actions:
 
     name: Trigger PR Workflow
-    if: >
-      github.event.issue.pull_request && contains(github.event.comment.body, '@toptal-bot run features GHA')
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '@toptal-bot run features GHA')
     runs-on: ubuntu-latest
     steps:
       - id: prData
