@@ -14,12 +14,11 @@ jobs:
       - name: List Files
         run: |
           echo ${{ github.ref_name }}
+          echo ${{ github.head_ref }}
           pwd
           ls -a
           echo $GITHUB_SHA
-          echo $GITHUB_REPOSITORY
-          echo $GITHUB_WORKSPACE
-          echo "${{ github.token }}"
+
       - name: Checkout
         uses: actions/checkout@v1
       - name: List Files2
